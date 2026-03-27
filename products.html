@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Products | Flipkart Clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .shop-layout { display: flex; gap: 15px; background: #f1f3f6; padding: 15px 0; }
+        .sidebar { width: 280px; background: #fff; padding: 15px; box-shadow: 0 1px 8px 0 rgba(0,0,0,0.06); height: fit-content; position: sticky; top: 120px; }
+        .results-container { flex: 1; background: #fff; padding: 15px; box-shadow: 0 1px 8px 0 rgba(0,0,0,0.06); }
+        .results-header { padding-bottom: 15px; border-bottom: 1px solid #f0f0f0; margin-bottom: 20px; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-main-row">
+            <a href="index.html" class="logo" style="color: #2874f0; font-size: 1.25rem; font-weight: 700; text-decoration: none;">ShopNest</a>
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search for Products, Brands and More">
+            </div>
+            <div class="nav-actions">
+                <a href="login.html" class="login-dropdown"><i class="fa-regular fa-circle-user"></i> <span>Login</span></a>
+                <a href="index.html">Home</a>
+                <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="shop-layout container">
+        <aside class="sidebar">
+            <h3>Filters</h3>
+            <div class="filter-section">
+                <h4>Categories</h4>
+                <select id="cat-filter">
+                    <option value="all">All Items</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Mobiles">Mobiles</option>
+                    <option value="Beauty">Beauty</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Home">Home</option>
+                    <option value="Appliances">Appliances</option>
+                    <option value="Toys">Toys & Baby</option>
+                    <option value="Grocery">Grocery</option>
+                    <option value="Auto Acc...">Auto Accessories</option>
+                    <option value="2 Wheele...">2 Wheelers</option>
+                    <option value="Sports & ...">Sports & More</option>
+                </select>
+            </div>
+            <div class="filter-section"><h4>Price</h4><select id="price-filter"><option value="all">All Prices</option><option value="0-1000">Under ₹1000</option><option value="1001-5000">₹1000 - ₹5000</option><option value="5001-plus">Above ₹5000</option></select></div>
+        </aside>
+
+        <main class="results-container">
+            <div class="results-header">Showing <span id="count-span">0</span> results for <b id="query-span">Everything</b></div>
+            <div id="results-grid" class="products-grid"></div>
+        </main>
+    </div>
+
+    <script src="js/products.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const initialCategory = urlParams.get('category');
+            
+            const catFilter = document.getElementById('cat-filter');
+            const priceFilter = document.getElementById('price-filter');
+            const resultsGrid = document.getElementById('results-grid');
+            const countSpan = document.getElementById('count-span');
+            const querySpan = document.getElementById('query-span');
+
+            const render = () => {
+                const selectedCat = catFilter.value;
+                const selectedPrice = priceFilter.value;
+
+                let filtered = (selectedCat === 'all') ? getAllProducts() : getProductsByCategory(selectedCat);
+                
+                if (selectedPrice !== 'all') {
+                    const [min, max] = selectedPrice.split('-').map(n => n === 'plus' ? Infinity : parseInt(n));
+                    filtered = filtered.filter(p => p.price >= min && p.price <= max);
+                }
+
+                resultsGrid.innerHTML = filtered.length > 0 ? filtered.map(p => createProductCard(p)).join('') : '<p style="padding: 20px;">No matches found.</p>';
+                countSpan.innerText = filtered.length;
+                querySpan.innerText = selectedCat === 'all' ? 'All Items' : selectedCat;
+            };
+
+            if (initialCategory) {
+                const opt = Array.from(catFilter.options).find(o => o.value.toLowerCase() === initialCategory.toLowerCase());
+                if (opt) catFilter.value = opt.value;
+            }
+
+            catFilter.onchange = render;
+            priceFilter.onchange = render;
+            render();
+        });
+    </script>
+</body>
+</html>

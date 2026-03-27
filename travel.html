@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Tickets, Flights Booking | ShopNest Travel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .travel-hero {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 4rem 2rem;
+            color: white;
+            text-align: center;
+        }
+        .travel-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .travel-hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+        }
+        .search-widget {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            max-width: 1000px;
+            margin: -60px auto 40px;
+            position: relative;
+            z-index: 10;
+        }
+        .flight-type-selector {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            color: #212121;
+        }
+        .flight-type-selector label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+        .flight-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr auto;
+            gap: 15px;
+            align-items: center;
+        }
+        .form-field {
+            border: 1px solid #e0e0e0;
+            padding: 12px 15px;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: white;
+        }
+        .form-field label {
+            font-size: 0.75rem;
+            color: #878787;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .form-field input, .form-field select {
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #212121;
+            outline: none;
+            width: 100%;
+            background: transparent;
+        }
+        .form-field .fa-solid {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #2874f0;
+        }
+        .search-btn {
+            background: #ff641b;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            height: 100%;
+            padding: 0 40px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: background 0.2s;
+        }
+        .search-btn:hover { background: #fb5400; }
+        
+        .offers-section { max-width: 1248px; margin: 40px auto; padding: 0 20px; }
+        .offers-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 20px; color: #212121; }
+        .offers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .offer-card { background: white; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); overflow: hidden; display: flex; cursor: pointer; transition: transform 0.2s; }
+        .offer-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .offer-img { width: 120px; height: 120px; object-fit: cover; }
+        .offer-details { padding: 15px; display: flex; flex-direction: column; justify-content: center; }
+        .offer-details h4 { font-size: 1.1rem; margin-bottom: 5px; color: #212121; }
+        .offer-details p { font-size: 0.85rem; color: #878787; margin-bottom: 10px; }
+        .offer-details .code { border: 1px dashed #2874f0; color: #2874f0; padding: 4px 8px; font-size: 0.8rem; font-weight: 700; border-radius: 4px; display: inline-block; width: fit-content; }
+        
+        @media (max-width: 992px) {
+            .flight-form { grid-template-columns: 1fr 1fr; }
+            .search-btn { grid-column: span 2; padding: 15px; }
+            .offers-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .flight-form { grid-template-columns: 1fr; }
+            .search-btn { grid-column: span 1; }
+            .offers-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top-row">
+            <div class="header-tabs">
+                <a href="index.html" class="header-tab tab-flipkart">
+                    ShopNest
+                </a>
+                <a href="travel.html" class="header-tab tab-travel active" style="color: #ff641b;">
+                    <i class="fa-solid fa-plane"></i> Travel
+                </a>
+            </div>
+            <div class="location-selector">
+                <i class="fa-solid fa-location-dot"></i>
+                Location not set <a href="#" style="color: #2874f0; text-decoration: none; margin-left: 5px; font-weight: 700;">Select delivery location ></a>
+            </div>
+        </div>
+
+        <div class="header-main-row">
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search for Flights, Hotels and More">
+            </div>
+
+            <div class="nav-actions">
+                <a href="login.html" class="login-dropdown">
+                    <i class="fa-regular fa-circle-user"></i>
+                    <span>Login</span>
+                </a>
+                <a href="orders.html">
+                    <i class="fa-solid fa-plane-departure"></i>
+                    Bookings
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="travel-hero">
+            <h1>Book Flights on ShopNest Travel</h1>
+            <p>Get the best deals on domestic and international flights.</p>
+        </div>
+
+        <div class="search-widget" id="flightSearchForm">
+            <div class="flight-type-selector">
+                <label><input type="radio" name="tripType" value="oneway" checked> One Way</label>
+                <label><input type="radio" name="tripType" value="round"> Round Trip</label>
+            </div>
+            <div class="flight-form">
+                <div class="form-field">
+                    <label>From</label>
+                    <input type="text" placeholder="Delhi (DEL)">
+                    <i class="fa-solid fa-plane-departure" style="color: #878787; font-size: 0.9rem;"></i>
+                </div>
+                <div class="form-field">
+                    <label>To</label>
+                    <input type="text" placeholder="Mumbai (BOM)">
+                    <i class="fa-solid fa-plane-arrival" style="color: #878787; font-size: 0.9rem;"></i>
+                </div>
+                <div class="form-field">
+                    <label>Depart On</label>
+                    <input type="date" id="departDate">
+                </div>
+                <div class="form-field">
+                    <label>Travellers & Class</label>
+                    <input type="text" value="1 Traveller, Economy" readonly style="cursor: pointer;">
+                    <i class="fa-solid fa-users" style="color: #878787; font-size: 0.9rem;"></i>
+                </div>
+                <button class="search-btn" onclick="searchFlights(event)">SEARCH</button>
+            </div>
+        </div>
+
+        <section class="offers-section">
+            <h3 class="offers-title">Exclusive Flight Offers for You</h3>
+            <div class="offers-grid">
+                <div class="offer-card" onclick="alert('Offer copied! Use code SNFLY24 at checkout.')">
+                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&auto=format" alt="Flights" class="offer-img">
+                    <div class="offer-details">
+                        <h4>15% Off on Flights</h4>
+                        <p>Valid on all domestic flights. Max discount ₹1500.</p>
+                        <span class="code">SNFLY24</span>
+                    </div>
+                </div>
+                <div class="offer-card" onclick="alert('Offer applied! Extra 5% off for Plus members.')">
+                    <img src="https://images.unsplash.com/photo-1540339832862-4745ea3d31b0?w=400&auto=format" alt="Premium" class="offer-img">
+                    <div class="offer-details">
+                        <h4>Plus Member Special</h4>
+                        <p>Extra 5% off on base fare and free seat selection.</p>
+                        <span class="code">PLUSFLY</span>
+                    </div>
+                </div>
+                <div class="offer-card" onclick="alert('Offer copied! Use code INTLGO at checkout.')">
+                    <img src="https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?w=400&auto=format" alt="International" class="offer-img">
+                    <div class="offer-details">
+                        <h4>International Travel</h4>
+                        <p>Instant discount up to ₹5000 on intl destinations.</p>
+                        <span class="code">INTLGO</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Dummy Results Section (Hidden default) -->
+        <section class="offers-section" id="searchResults" style="display: none;">
+            <h3 class="offers-title">Available Flights</h3>
+            <div id="resultsList" style="display: flex; flex-direction: column; gap: 15px;">
+                <!-- Filled dynamically -->
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: #212121; color: white; margin-top: 60px;">
+        <div class="container">
+            <div style="padding: 25px 0; text-align: center; font-size: 0.85rem; color: #878787;">© 2024 ShopNest Travel. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set today's date as default depart date
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('departDate').value = today;
+            document.getElementById('departDate').min = today;
+            
+            initTheme();
+        });
+
+        function searchFlights(event) {
+            event.preventDefault();
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            
+            // Loading animation
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                
+                document.getElementById('flightSearchForm').scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('searchResults').style.display = 'block';
+                
+                const resultsHTML = [
+                    { airline: 'ShopNest Air', dep: '06:00', arr: '08:10', dur: '2h 10m', price: 4250 },
+                    { airline: 'IndiFly', dep: '09:45', arr: '11:55', dur: '2h 10m', price: 4800 },
+                    { airline: 'VistaraX', dep: '14:20', arr: '16:40', dur: '2h 20m', price: 5400 }
+                ].map(f => `
+                    <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fa-solid fa-plane-tail" style="font-size: 24px; color: #2874f0;"></i>
+                            <div>
+                                <h4 style="color: #212121; font-size: 1.1rem; margin-bottom: 3px;">${f.airline}</h4>
+                                <p style="color: #878787; font-size: 0.85rem;">Economy</p>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <h3 style="color: #212121; font-size: 1.2rem;">${f.dep}</h3>
+                            <p style="color: #878787; font-size: 0.85rem;">DEL</p>
+                        </div>
+                        <div style="text-align: center; width: 100px;">
+                            <p style="color: #878787; font-size: 0.8rem; margin-bottom: 5px;">${f.dur}</p>
+                            <div style="height: 1px; background: #e0e0e0; position: relative;">
+                                <i class="fa-solid fa-plane" style="position: absolute; top: -7px; right: -5px; color: #e0e0e0; font-size: 12px;"></i>
+                            </div>
+                            <p style="color: #878787; font-size: 0.8rem; margin-top: 5px;">Non stop</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <h3 style="color: #212121; font-size: 1.2rem;">${f.arr}</h3>
+                            <p style="color: #878787; font-size: 0.85rem;">BOM</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <h2 style="color: #212121; font-size: 1.5rem; margin-bottom: 8px;">₹${f.price.toLocaleString()}</h2>
+                            <button onclick="window.location.href='order-success.html'" style="background: #2874f0; color: white; border: none; padding: 8px 25px; border-radius: 4px; font-weight: 600; cursor: pointer;">BOOK</button>
+                        </div>
+                    </div>
+                `).join('');
+                
+                document.getElementById('resultsList').innerHTML = resultsHTML;
+            }, 1200);
+        }
+    </script>
+</body>
+</html>

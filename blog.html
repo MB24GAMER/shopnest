@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Journal | ShopNest Collective</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .blog-header {
+            padding: 12rem 0 8rem;
+            text-align: center;
+        }
+
+        .blog-header h1 { font-size: 5.5rem; font-weight: 300; margin-bottom: 1.5rem; }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5rem;
+            margin-bottom: 10rem;
+        }
+
+        .blog-card {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .blog-card:hover { transform: translateY(-15px); }
+
+        .blog-card .img-container {
+            height: 550px;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 1rem;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .blog-card:hover img { transform: scale(1.05); }
+
+        .blog-title {
+            font-family: 'Marcellus', serif;
+            font-size: 2.4rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+        }
+
+        .blog-excerpt {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .blog-footer {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">ShopNest</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Collection</a></li>
+                <li><a href="products.html">The Shop</a></li>
+                <li><a href="blog.html" class="active">The Journal</a></li>
+                <li><a href="about.html">Our Story</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="profile.html" class="action-icon"><i class="fa-regular fa-user"></i></a>
+                <a href="wishlist.html" class="action-icon"><i class="fa-regular fa-heart"></i><span id="wishlist-badge" class="badge">0</span></a>
+                <a href="cart.html" class="action-icon"><i class="fa-solid fa-cart-shopping"></i><span id="cart-badge" class="badge">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="blog-header reveal">
+            <p style="text-transform: uppercase; letter-spacing: 5px; color: var(--accent); font-weight: 700;">Insights & Style</p>
+            <h1>The Journal</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 550px; margin: 0 auto;">A digital space dedicated to the art of curated living and architectural fashion.</p>
+        </section>
+
+        <div class="blog-grid">
+            <div class="blog-card reveal">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1500" alt="Minimalist Living">
+                </div>
+                <p style="color: var(--accent); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.8rem;">Lifestyle</p>
+                <h2 class="blog-title">The Art of Minimalist Living</h2>
+                <p class="blog-excerpt">Discover how simplifying your physical surroundings can unlock a profound sense of psychological clarity and creative purpose.</p>
+                <div class="blog-footer">
+                    Read Story <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+            
+            <div class="blog-card reveal">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1500" alt="Spring Palette">
+                </div>
+                <p style="color: var(--accent); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.8rem;">Fashion</p>
+                <h2 class="blog-title">Spring Palette: Soft Hues & Silk</h2>
+                <p class="blog-excerpt">This season, we explore the gentle transition of organic tones paired with the timeless luxury of responsibly sourced silk.</p>
+                <div class="blog-footer">
+                    Read Story <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="margin-top: 0;">
+        <div class="container" style="text-align: center; padding: 10rem 0;">
+            <a href="index.html" class="logo" style="font-size: 2rem; margin-bottom: 2rem; display: block;">ShopNest</a>
+            <p style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">© 2024 SHOPNEST COLLECTION. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+             initTheme();
+             updateBadges();
+             initScrollReveal();
+        });
+    </script>
+</body>
+</html>

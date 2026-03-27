@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Placed Successfully | ShopNest</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background: var(--light); min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <div class="container" style="max-width: 600px; text-align: center; background: white; padding: 5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-lg);">
+        <div style="width: 100px; height: 100px; background: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 3rem; font-size: 3.5rem;">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        
+        <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem;">Order Placed!</h1>
+        <p style="color: var(--gray-600); font-size: 1.125rem; line-height: 1.6; margin-bottom: 2rem;">
+            Thank you for shopping with us! Your order <span id="order-id" style="font-weight: 800; color: var(--primary);">#SN-784231</span> has been placed successfully.
+        </p>
+
+        <div style="background: var(--gray-100); padding: 2rem; border-radius: var(--radius-sm); margin-bottom: 3rem; text-align: left;">
+            <h4 style="margin-bottom: 1rem; font-weight: 700;">Order Details</h4>
+            <div class="d-flex justify-between" style="margin-bottom: 0.5rem; font-size: 0.875rem;">
+                <span style="color: var(--gray-400);">Estimated Delivery</span>
+                <span id="delivery-date" style="font-weight: 600;">28th March, 2026</span>
+            </div>
+            <div class="d-flex justify-between" style="font-size: 0.875rem;">
+                <span style="color: var(--gray-400);">Payment Method</span>
+                <span style="font-weight: 600;">Cash On Delivery</span>
+            </div>
+        </div>
+
+        <div class="d-flex gap-1" style="flex-direction: column;">
+            <a href="products.html" class="btn-primary" style="padding: 1rem;">Continue Shopping</a>
+            <a href="index.html" class="btn-outline" style="border-color: var(--gray-200); color: var(--gray-600); padding: 1rem;">Back to Home</a>
+        </div>
+        
+        <p style="margin-top: 3rem; color: var(--gray-400); font-size: 0.875rem;">A confirmation email has been sent to your registered address.</p>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Generate random order ID
+        const orderId = 'SN-' + Math.floor(100000 + Math.random() * 900000);
+        document.getElementById('order-id').textContent = '#' + orderId;
+        
+        // Date 4 days from now
+        const deliveryDate = new Date();
+        deliveryDate.setDate(deliveryDate.getDate() + 4);
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        document.getElementById('delivery-date').textContent = deliveryDate.toLocaleDateString('en-IN', options);
+    </script>
+</body>
+</html>

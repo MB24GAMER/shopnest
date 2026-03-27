@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History | ShopNest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .order-history {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 5rem;
+            margin-top: 5rem;
+        }
+
+        .order-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .order-id {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .order-status {
+            padding: 0.4rem 1rem;
+            background: var(--gray-100);
+            border-radius: var(--radius-full);
+            color: var(--secondary);
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">ShopNest</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Collection</a></li>
+                <li><a href="products.html">Products</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="container" style="padding: 10rem 2rem;">
+        <h1 style="font-size: 3rem; font-family: 'Marcellus', serif;">Order History</h1>
+        
+        <div class="order-history">
+            <aside class="sidebar" style="background: var(--gray-100); padding: 3rem; border-radius: var(--radius-md); height: fit-content;">
+                <ul style="list-style: none;">
+                    <li><a href="profile.html" style="color: var(--gray-500); margin-bottom: 1.5rem; display: block;">Overview</a></li>
+                    <li><a href="orders.html" style="color: var(--primary); font-weight: 700; margin-bottom: 1.5rem; display: block;">Order History</a></li>
+                    <li><a href="wishlist.html" style="color: var(--gray-500); margin-bottom: 1.5rem; display: block;">Wishlist</a></li>
+                </ul>
+            </aside>
+            
+            <section class="orders-main">
+                <div class="order-card">
+                    <div>
+                        <p class="order-id">ID: #SN-98234</p>
+                        <h3 style="font-family: 'Marcellus', serif; margin: 0.5rem 0;">Leather Jacket & Accessories</h3>
+                        <p style="color: var(--gray-500);">Placed on Oct 12, 2023</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <p style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">₹7,499</p>
+                        <span class="order-status">Delivered</span>
+                    </div>
+                </div>
+                <div class="order-card">
+                    <div>
+                        <p class="order-id">ID: #SN-98112</p>
+                        <h3 style="font-family: 'Marcellus', serif; margin: 0.5rem 0;">Modern Smart Watch</h3>
+                        <p style="color: var(--gray-500);">Placed on Sep 28, 2023</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <p style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">₹3,499</p>
+                        <span class="order-status">Delivered</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer style="background: var(--primary); color: white; padding: 5rem 0; text-align: center; margin-top: 10rem;">
+        <a href="index.html" class="logo" style="color: white; font-size: 2rem;">ShopNest</a>
+    </footer>
+</body>
+</html>

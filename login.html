@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | ShopNest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .login-page-bg { background: #f1f3f6; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .login-container { width: 850px; height: 530px; background: #fff; display: flex; border-radius: 4px; overflow: hidden; box-shadow: 0 4px 6px 0 rgba(0,0,0,0.1); }
+        .login-sidebar { width: 40%; background: #2874f0; padding: 40px 33px; color: #fff; display: flex; flex-direction: column; }
+        .login-sidebar h2 { font-size: 1.8rem; font-weight: 500; margin-bottom: 20px; }
+        .login-sidebar p { font-size: 1.15rem; line-height: 1.5; color: #dbdbdb; }
+        .login-sidebar img { margin-top: auto; align-self: center; width: 100%; height: auto; opacity: 0.8; }
+        
+        .login-form-pane { flex: 1; padding: 56px 35px 16px; display: flex; flex-direction: column; }
+        .input-group { border-bottom: 1px solid #e0e0e0; margin-bottom: 30px; position: relative; }
+        .input-group input { width: 100%; border: none; outline: none; padding: 10px 0; font-size: 1.05rem; background: transparent; }
+        .input-group label { position: absolute; left: 0; bottom: 10px; color: #878787; font-size: 0.9rem; pointer-events: none; transition: 0.2s ease all; }
+        .input-group input:focus ~ label, .input-group input:valid ~ label { bottom: 35px; font-size: 0.8rem; color: #2874f0; }
+        
+        .terms { font-size: 0.75rem; color: #878787; margin-bottom: 20px; line-height: 1.4; }
+        .terms a { color: #2874f0; text-decoration: none; }
+        .login-cta { background: #fb641b; color: #fff; border: none; padding: 15px; font-weight: 700; border-radius: 2px; cursor: pointer; font-size: 1rem; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2); }
+        .otp-btn { background: #fff; color: #2874f0; border: none; padding: 15px; font-weight: 600; border-radius: 2px; cursor: pointer; text-align: center; box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2); margin-top: 20px; text-decoration: none; font-size: 0.95rem; }
+        .signup-link { margin-top: auto; text-align: center; font-size: 0.9rem; color: #2874f0; font-weight: 700; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="login-page-bg">
+        <div class="login-container">
+            <div class="login-sidebar">
+                <h2>Login</h2>
+                <p>Get access to your Orders, Wishlist and Recommendations</p>
+                <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/login_img_c4a81e.png" alt="Flipkart login Illustration">
+            </div>
+            <div class="login-form-pane">
+                <form action="index.html" style="display: flex; flex-direction: column;">
+                    <div class="input-group">
+                        <input type="text" required>
+                        <label>Enter Email/Mobile number</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" required>
+                        <label>Enter Password</label>
+                    </div>
+                    <p class="terms">By continuing, you agree to ShopNest's <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>
+                    <button type="submit" class="login-cta">Login</button>
+                    <a href="#" class="otp-btn">Request OTP</a>
+                </form>
+                <a href="signup.html" class="signup-link">New to ShopNest? Create an account</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
