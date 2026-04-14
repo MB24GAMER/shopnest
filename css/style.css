@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-    /* New White Flipkart Palette */
+    /* New White ShopNest Palette */
     --primary: #2874f0;
     --secondary: #fb641b;
-    --accent: #ffe51b; /* Flipkart Yellow */
+    --accent: #ffe51b; /* ShopNest Yellow */
     --bg-light: #f1f3f6;
     --bg-white: #ffffff;
     --text: #212121;
@@ -78,8 +78,8 @@ header {
     transition: var(--transition);
 }
 
-.tab-flipkart {
-    background: #ffe51b; /* Brighter Flipkart Yellow */
+.tab-shopnest {
+    background: #ffe51b; /* Brighter ShopNest Yellow */
     color: #2874f0;
 }
 

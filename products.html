@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop Products | Flipkart Clone</title>
+    <title>Shop Products | ShopNest</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
@@ -43,11 +43,9 @@
                     <option value="Electronics">Electronics</option>
                     <option value="Home">Home</option>
                     <option value="Appliances">Appliances</option>
-                    <option value="Toys">Toys & Baby</option>
+
                     <option value="Grocery">Grocery</option>
-                    <option value="Auto Acc...">Auto Accessories</option>
                     <option value="2 Wheele...">2 Wheelers</option>
-                    <option value="Sports & ...">Sports & More</option>
                 </select>
             </div>
             <div class="filter-section"><h4>Price</h4><select id="price-filter"><option value="all">All Prices</option><option value="0-1000">Under ₹1000</option><option value="1001-5000">₹1000 - ₹5000</option><option value="5001-plus">Above ₹5000</option></select></div>
@@ -65,12 +63,19 @@
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const initialCategory = urlParams.get('category');
+            const searchQuery = urlParams.get('search'); // Capture search query
             
             const catFilter = document.getElementById('cat-filter');
             const priceFilter = document.getElementById('price-filter');
             const resultsGrid = document.getElementById('results-grid');
             const countSpan = document.getElementById('count-span');
             const querySpan = document.getElementById('query-span');
+
+            // Sync the visual search bar value
+            if (searchQuery) {
+                const searchInputs = document.querySelectorAll('.search-bar input');
+                searchInputs.forEach(input => input.value = searchQuery);
+            }
 
             const render = () => {
                 const selectedCat = catFilter.value;
@@ -83,9 +88,20 @@
                     filtered = filtered.filter(p => p.price >= min && p.price <= max);
                 }
 
-                resultsGrid.innerHTML = filtered.length > 0 ? filtered.map(p => createProductCard(p)).join('') : '<p style="padding: 20px;">No matches found.</p>';
+                if (searchQuery) {
+                    const lowerQ = searchQuery.toLowerCase();
+                    filtered = filtered.filter(p => 
+                        p.name.toLowerCase().includes(lowerQ) || 
+                        p.category.toLowerCase().includes(lowerQ) || 
+                        (p.description && p.description.toLowerCase().includes(lowerQ)));
+                    
+                    // Force selected option visually to reflect nothing or category
+                    if (!initialCategory) catFilter.value = 'all';
+                }
+
+                resultsGrid.innerHTML = filtered.length > 0 ? filtered.map(p => createProductCard(p)).join('') : '<p style="padding: 20px; font-size: 1.1rem; color: #878787;">No products matched your search.</p>';
                 countSpan.innerText = filtered.length;
-                querySpan.innerText = selectedCat === 'all' ? 'All Items' : selectedCat;
+                querySpan.innerText = searchQuery ? `"${searchQuery}"` : (selectedCat === 'all' ? 'All Items' : selectedCat);
             };
 
             if (initialCategory) {

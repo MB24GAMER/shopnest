@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Shopping Site for Electronics, Fashion, Home & More | Flipkart Clone</title>
+    <title>Online Shopping Site for Electronics, Fashion, Home & More | ShopNest</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -11,8 +11,8 @@
     <header>
         <div class="header-top-row">
             <div class="header-tabs">
-                <a href="#" class="header-tab tab-flipkart">
-                    <img src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-7333a9.svg" alt="Flipkart" style="height: 20px;">
+                <a href="#" class="header-tab tab-shopnest">
+                    <span style="color: #2874f0; font-weight: 800; font-size: 1.1rem; font-style: italic;">ShopNest</span>
                 </a>
                 <a href="travel.html" class="header-tab tab-travel">
                     <i class="fa-solid fa-plane" style="color: #ff641b;"></i> Travel
@@ -56,11 +56,11 @@
             <li><a href="products.html?category=Electronics" class="cat-item"><i class="fa-solid fa-laptop" style="color: #4caf50;"></i><span>Electronics</span></a></li>
             <li><a href="products.html?category=Home" class="cat-item"><i class="fa-solid fa-couch" style="color: #795548;"></i><span>Home</span></a></li>
             <li><a href="products.html?category=Appliances" class="cat-item"><i class="fa-solid fa-tv" style="color: #673ab7;"></i><span>Appliances</span></a></li>
-            <li><a href="products.html?category=Toys" class="cat-item"><i class="fa-solid fa-puzzle-piece" style="color: #ffc107;"></i><span>Toys & Baby</span></a></li>
+
             <li><a href="products.html?category=Grocery" class="cat-item"><i class="fa-solid fa-basket-shopping" style="color: #4caf50;"></i><span>Food & Health</span></a></li>
-            <li><a href="products.html?category=Auto%20Acc..." class="cat-item"><i class="fa-solid fa-gear" style="color: #607d8b;"></i><span>Auto Acc...</span></a></li>
+
             <li><a href="products.html?category=2%20Wheele..." class="cat-item"><i class="fa-solid fa-motorcycle" style="color: #212121;"></i><span>2 Wheele...</span></a></li>
-            <li><a href="products.html?category=Sports%20%26%20..." class="cat-item"><i class="fa-solid fa-baseball-bat-ball" style="color: #ff5722;"></i><span>Sports & ...</span></a></li>
+
         </ul>
     </nav>
 
@@ -99,8 +99,7 @@
         document.addEventListener('DOMContentLoaded', () => {
              const categoriesRow = [
                  "For You", "Fashion", "Mobiles", "Beauty", "Electronics", 
-                 "Home", "Appliances", "Toys", "Grocery", "Auto Acc...", 
-                 "2 Wheele...", "Sports & ..."
+                 "Home", "Appliances", "Grocery", "2 Wheele..."
              ];
              
              const main = document.getElementById('main-content');

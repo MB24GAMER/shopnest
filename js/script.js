@@ -8,6 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     updateBadges();
     initScrollReveal();
+    
+    // Global search functionality
+    const searchInputs = document.querySelectorAll('.search-bar input');
+    searchInputs.forEach(input => {
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && input.value.trim() !== '') {
+                window.location.href = 'products.html?search=' + encodeURIComponent(input.value.trim());
+            }
+        });
+    });
 });
 
 // --- Theme Management ---

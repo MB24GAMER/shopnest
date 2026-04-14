@@ -48,18 +48,22 @@
 </head>
 <body>
     <header>
-        <div class="nav-container">
-            <a href="index.html" class="logo">ShopNest</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Collection</a></li>
-                <li><a href="products.html">The Shop</a></li>
-                <li><a href="blog.html">The Journal</a></li>
-                <li><a href="about.html">Our Story</a></li>
-            </ul>
+        <div class="header-main-row">
+            <a href="index.html" class="logo" style="color: #2874f0; font-size: 1.25rem; font-weight: 700; text-decoration: none;">ShopNest</a>
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search for Products, Brands and More">
+            </div>
             <div class="nav-actions">
-                <a href="profile.html" class="action-icon active"><i class="fa-solid fa-user"></i></a>
-                <a href="wishlist.html" class="action-icon"><i class="fa-regular fa-heart"></i><span id="wishlist-badge" class="badge">0</span></a>
-                <a href="cart.html" class="action-icon"><i class="fa-solid fa-cart-shopping"></i><span id="cart-badge" class="badge">0</span></a>
+                <a href="profile.html" class="login-dropdown" style="color: inherit; text-decoration: none; font-weight: 600;">
+                    <i class="fa-regular fa-circle-user"></i> <span>Profile</span>
+                </a>
+                <a href="wishlist.html" style="color: inherit; text-decoration: none; font-weight: 600;">
+                    <i class="fa-regular fa-heart"></i> Wishlist
+                </a>
+                <a href="cart.html" style="color: inherit; text-decoration: none; font-weight: 600;">
+                    <i class="fa-solid fa-cart-shopping"></i> Cart
+                </a>
             </div>
         </div>
     </header>
@@ -104,7 +108,7 @@
                             <input type="text" value="Unlimited" readonly style="opacity: 0.6;">
                         </div>
                     </form>
-                    <button class="btn btn-primary" style="padding: 2rem 5rem;">Save Changes</button>
+                    <button class="btn btn-primary" style="padding: 2rem 5rem;" onclick="saveChanges()">Save Changes</button>
                 </div>
 
                 <div class="stats-grid reveal" style="padding-bottom: 10rem;">
@@ -163,6 +167,17 @@
 
         function signOut() {
             localStorage.removeItem('shopnest_user');
+            window.location.href = 'index.html';
+        }
+
+        function saveChanges() {
+            const userData = localStorage.getItem('shopnest_user');
+            if (userData) {
+                const user = JSON.parse(userData);
+                user.name = document.getElementById('display-name').value;
+                user.email = document.getElementById('display-email').value;
+                localStorage.setItem('shopnest_user', JSON.stringify(user));
+            }
             window.location.href = 'index.html';
         }
     </script>
