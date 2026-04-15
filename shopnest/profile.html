@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Account | ShopNest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .profile-hero {
+            padding: 8rem 0 4rem;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .profile-hero h1 { font-size: 4.5rem; }
+        .member-badge { color: var(--accent); letter-spacing: 3px; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; margin-bottom: 1.5rem; display: block; }
+        
+        .profile-layout { display: grid; grid-template-columns: 280px 1fr; gap: 8rem; }
+        
+        .profile-sidebar { position: sticky; top: 150px; height: fit-content; }
+        .sidebar-links { list-style: none; }
+        .sidebar-links li { margin-bottom: 2.5rem; }
+        .sidebar-links a { font-size: 1.1rem; color: var(--text-muted); transition: 0.4s; }
+        .sidebar-links a.active { color: var(--text); font-weight: 700; }
+        .sidebar-links a:hover { color: var(--accent); padding-left: 10px; }
+
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 6rem; }
+        .form-group { display: flex; flex-direction: column; gap: 1rem; }
+        .form-group label { text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; font-weight: 700; opacity: 0.7; }
+        
+        input {
+            background: var(--card-bg); border: 1px solid var(--border);
+            padding: 1.5rem; border-radius: 1rem; color: var(--text);
+            font-size: 1.1rem;
+        }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-top: 6rem; }
+        .stat-card { background: var(--card-bg); padding: 4rem; border-radius: 2rem; text-align: center; box-shadow: var(--shadow); }
+        .stat-card h3 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .stat-card p { text-transform: uppercase; letter-spacing: 1px; font-size: 0.7rem; color: var(--text-muted); font-weight: 700; }
+
+        @media (max-width: 1000px) { .profile-layout { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-main-row">
+            <a href="index.html" class="logo" style="color: #2874f0; font-size: 1.25rem; font-weight: 700; text-decoration: none;">ShopNest</a>
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search for Products, Brands and More">
+            </div>
+            <div class="nav-actions">
+                <a href="profile.html" class="login-dropdown" style="color: inherit; text-decoration: none; font-weight: 600;">
+                    <i class="fa-regular fa-circle-user"></i> <span>Profile</span>
+                </a>
+                <a href="wishlist.html" style="color: inherit; text-decoration: none; font-weight: 600;">
+                    <i class="fa-regular fa-heart"></i> Wishlist
+                </a>
+                <a href="cart.html" style="color: inherit; text-decoration: none; font-weight: 600;">
+                    <i class="fa-solid fa-cart-shopping"></i> Cart
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="profile-hero reveal">
+            <div>
+                <span class="member-badge" id="member-role">ELITE MEMBER</span>
+                <h1 id="user-greeting">Welcome, User</h1>
+            </div>
+            <p id="member-joined" style="font-size: 0.9rem; color: var(--text-muted);">Joined October 2023</p>
+        </div>
+
+        <div class="profile-layout">
+            <aside class="profile-sidebar reveal">
+                <ul class="sidebar-links">
+                    <li><a href="profile.html" class="active">Personal Information</a></li>
+                    <li><a href="orders.html">Orders History</a></li>
+                    <li><a href="wishlist.html">Your Wishlist</a></li>
+                    <li><a href="#" onclick="signOut()" style="color: var(--danger);">Close Session</a></li>
+                </ul>
+            </aside>
+
+            <section class="profile-main">
+                <div class="reveal">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 4rem;">The Personal Edit</h2>
+                    <form class="form-grid">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" id="display-name" value="Jane Doe">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Contact</label>
+                            <input type="email" id="display-email" value="jane@collection.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Loyalty Tiers</label>
+                            <input type="text" value="Gold Status" readonly style="opacity: 0.6; cursor: not-allowed;">
+                        </div>
+                        <div class="form-group">
+                            <label>Acquisition Limit</label>
+                            <input type="text" value="Unlimited" readonly style="opacity: 0.6;">
+                        </div>
+                    </form>
+                    <button class="btn btn-primary" style="padding: 2rem 5rem;" onclick="saveChanges()">Save Changes</button>
+                </div>
+
+                <div class="stats-grid reveal" style="padding-bottom: 10rem;">
+                    <div class="stat-card">
+                        <h3 id="stat-orders">0</h3>
+                        <p>Total Orders</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="stat-wishlist">0</h3>
+                        <p>Saved Pieces</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="stat-spend">₹0</h3>
+                        <p>Total Invested</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container" style="text-align: center; padding: 10rem 0;">
+            <a href="index.html" class="logo" style="font-size: 2rem; margin-bottom: 2rem; display: block;">ShopNest</a>
+            <p style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">© 2024 SHOPNEST COLLECTION. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            updateBadges();
+            loadUserData();
+        });
+
+        function loadUserData() {
+            const userData = localStorage.getItem('shopnest_user');
+            if (!userData) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const user = JSON.parse(userData);
+            document.getElementById('user-greeting').textContent = `Welcome, ${user.name.split(' ')[0]}`;
+            document.getElementById('member-role').textContent = user.role;
+            document.getElementById('member-joined').textContent = `Joined ${user.joined}`;
+            document.getElementById('display-name').value = user.name;
+            document.getElementById('display-email').value = user.email;
+
+            // Simulated stats
+            document.getElementById('stat-orders').textContent = Math.floor(Math.random() * 5) + 1;
+            document.getElementById('stat-wishlist').textContent = wishlist.length;
+            document.getElementById('stat-spend').textContent = `₹${(Math.floor(Math.random() * 15000) + 5000).toLocaleString()}`;
+        }
+
+        function signOut() {
+            localStorage.removeItem('shopnest_user');
+            window.location.href = 'index.html';
+        }
+
+        function saveChanges() {
+            const userData = localStorage.getItem('shopnest_user');
+            if (userData) {
+                const user = JSON.parse(userData);
+                user.name = document.getElementById('display-name').value;
+                user.email = document.getElementById('display-email').value;
+                localStorage.setItem('shopnest_user', JSON.stringify(user));
+            }
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
