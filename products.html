@@ -37,6 +37,7 @@
                 <h4>Categories</h4>
                 <select id="cat-filter">
                     <option value="all">All Items</option>
+                    <option value="For You">For You</option>
                     <option value="Fashion">Fashion</option>
                     <option value="Mobiles">Mobiles</option>
                     <option value="Beauty">Beauty</option>
@@ -45,7 +46,6 @@
                     <option value="Appliances">Appliances</option>
 
                     <option value="Grocery">Grocery</option>
-                    <option value="2 Wheele...">2 Wheelers</option>
                 </select>
             </div>
             <div class="filter-section"><h4>Price</h4><select id="price-filter"><option value="all">All Prices</option><option value="0-1000">Under ₹1000</option><option value="1001-5000">₹1000 - ₹5000</option><option value="5001-plus">Above ₹5000</option></select></div>
@@ -64,6 +64,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const initialCategory = urlParams.get('category');
             const searchQuery = urlParams.get('search'); // Capture search query
+            let currentCategory = initialCategory; // prefer URL category on first load
             
             const catFilter = document.getElementById('cat-filter');
             const priceFilter = document.getElementById('price-filter');
@@ -78,7 +79,7 @@
             }
 
             const render = () => {
-                const selectedCat = catFilter.value;
+                const selectedCat = (currentCategory && currentCategory !== 'all') ? currentCategory : catFilter.value;
                 const selectedPrice = priceFilter.value;
 
                 let filtered = (selectedCat === 'all') ? getAllProducts() : getProductsByCategory(selectedCat);
@@ -109,7 +110,10 @@
                 if (opt) catFilter.value = opt.value;
             }
 
-            catFilter.onchange = render;
+            catFilter.onchange = () => {
+                currentCategory = (catFilter.value === 'all') ? null : catFilter.value;
+                render();
+            };
             priceFilter.onchange = render;
             render();
         });

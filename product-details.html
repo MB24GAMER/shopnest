@@ -45,12 +45,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
-            const idValue = params.get('id');
+            const idValue = params.get('id') || params.get('productId') || params.get('pid') || localStorage.getItem('shopnest_last_product_id');
             const product = getProductById(idValue);
             
             const container = document.getElementById('product-page-content');
             
             if (product) {
+                localStorage.setItem('shopnest_last_product_id', String(product.id));
                 container.className = 'product-page';
                 const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
                 container.innerHTML = `
